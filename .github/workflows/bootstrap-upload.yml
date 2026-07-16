@@ -1,10 +1,6 @@
 name: Bootstrap project upload
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - project-payload.b64
   pull_request:
     branches: [main]
 
@@ -19,6 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0
 
       - name: Unpack prepared project
         shell: bash
@@ -33,14 +30,14 @@ jobs:
           cp -a .bootstrap-extracted/stratnomical-github-ready/* .
           npm install --package-lock-only --ignore-scripts
           rm -rf .bootstrap-extracted payload payload2 assembled-payload.b64 project.tar.xz project-payload.b64
-          rm -f .github/workflows/bootstrap-upload.yml
 
       - name: Commit project files
         shell: bash
         run: |
-          set -euo pipefail
+          set -euxo pipefail
+          git status --short
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "Initial project upload"
-          git push origin main
+          git push origin HEAD:main
