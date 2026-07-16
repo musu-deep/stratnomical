@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - project-payload.b64
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: write
@@ -13,8 +15,10 @@ jobs:
   unpack-and-commit:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Check out main branch
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Unpack prepared project
         shell: bash
