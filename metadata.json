@@ -1,0 +1,6 @@
+{
+  "name": "استراتنموي | بودكاست الفكر الاستراتيجي الكوني",
+  "description": "بودكاست فضائي فلسفي يسقط غموض الفيزياء الكونية وعجائب الفضاء على مسارات الأعمال، تقلبات الأسواق، المنتجات، وتطوير الذات.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
