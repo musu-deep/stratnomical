@@ -20,14 +20,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat payload/part-* > assembled-payload.b64
-          base64 --decode assembled-payload.b64 > project.zip
+          cat payload2/part-* > assembled-payload.b64
+          base64 --decode assembled-payload.b64 > project.tar.xz
           rm -rf .bootstrap-extracted
           mkdir -p .bootstrap-extracted
-          unzip -q project.zip -d .bootstrap-extracted
+          tar -xJf project.tar.xz -C .bootstrap-extracted
           shopt -s dotglob nullglob
           cp -a .bootstrap-extracted/stratnomical-github-ready/* .
-          rm -rf .bootstrap-extracted payload assembled-payload.b64 project.zip project-payload.b64
+          npm install --package-lock-only --ignore-scripts
+          rm -rf .bootstrap-extracted payload payload2 assembled-payload.b64 project.tar.xz project-payload.b64
           rm -f .github/workflows/bootstrap-upload.yml
 
       - name: Commit project files
