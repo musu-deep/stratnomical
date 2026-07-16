@@ -1,0 +1,40 @@
+name: Bootstrap project upload
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - project-payload.b64
+
+permissions:
+  contents: write
+
+jobs:
+  unpack-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Unpack prepared project
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 --decode project-payload.b64 > project.zip
+          rm -rf .bootstrap-extracted
+          mkdir -p .bootstrap-extracted
+          unzip -q project.zip -d .bootstrap-extracted
+          shopt -s dotglob nullglob
+          cp -a .bootstrap-extracted/stratnomical-github-ready/* .
+          rm -rf .bootstrap-extracted project.zip project-payload.b64
+          rm -f .github/workflows/bootstrap-upload.yml
+
+      - name: Commit project files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Initial project upload"
+          git push origin main
