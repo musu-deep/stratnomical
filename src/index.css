@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;600;700&family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Tajawal", sans-serif;
+  --font-serif: "Playfair Display", "Cairo", serif;
+  --font-display: "Playfair Display", "Cairo", serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-space-950: #020617;
+  --color-space-900: #060c1c;
+  --color-space-800: #0c142b;
+  --color-space-700: #142142;
+  --color-space-600: #1d2d5a;
+
+  --color-nebula-cyan: #818cf8;
+  --color-nebula-purple: #c084fc;
+  --color-nebula-pink: #f472b6;
+  --color-cosmic-gold: #fbbf24;
+}
+
+@layer base {
+  body {
+    background-color: #020617;
+    background-image:
+      radial-gradient(circle at 0% 0%, #1e1b4b 0%, transparent 45%),
+      radial-gradient(circle at 100% 100%, #312e81 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, #020617 0%, #000000 100%);
+    background-attachment: fixed;
+    color: #f8fafc;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  /* Futuristic custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #020617;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #142142;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #1e2d5a;
+  }
+}
+
+/* Accent gradient for special texts */
+.accent-gradient {
+  background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Pulsing starlight animation */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Nebula glowing backdrop */
+.nebula-glow {
+  filter: blur(140px);
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+/* Orbit decorative rings */
+.orbit-ring {
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+}
+
+/* Glassmorphism panel styling (Editorial upgrade) */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-panel-active {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(129, 140, 248, 0.25);
+}
+
+.glow-border {
+  box-shadow: 0 0 15px rgba(129, 140, 248, 0.1);
+}
+
+.glow-border-purple {
+  box-shadow: 0 0 15px rgba(192, 132, 252, 0.1);
+}
+
+/* Vertical Text Rail styling */
+.vertical-text,
+.writing-mode-vertical-rl {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
